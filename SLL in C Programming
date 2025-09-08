@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Student {
+    char name[50];
+    int age;
+    char roll[10];
+    struct Student* next;
+} *head = NULL;
+
+void addAtEnd() {
+    char name[50], roll[10];
+    int age;
+
+    printf("Enter Name: ");
+    scanf("%s", name);
+    
+    printf("Enter Roll: ");
+    scanf("%s", roll);
+    
+    printf("Enter Age: ");
+    scanf("%d", &age);
+
+    struct Student* newStudent = (struct Student*)malloc(sizeof(struct Student));
+    strcpy(newStudent->name, name);
+    strcpy(newStudent->roll, roll);
+    newStudent->age = age;
+    newStudent->next = NULL;
+
+    if (head == NULL) {
+        head = newStudent;
+    } else {
+        struct Student* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newStudent;
+    }
+}
+
+void display() {
+    if (head == NULL) {
+        printf("Empty List\n");
+    } else {
+        struct Student* temp = head;
+        while (temp != NULL) {
+            printf("Name: %s, Roll: %s, Age: %d\n", temp->name, temp->roll, temp->age);
+            temp = temp->next;
+        }
+    }
+}
+
+int main() {
+    int choice;
+    while (1) {
+        printf("\n1. Add Student\n2. Display Students\n3. Exit\nEnter choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1: addAtEnd(); break;
+            case 2: display(); break;
+            case 3: exit(0);
+            default: printf("Invalid choice.\n");
+        }
+    }
+
+    return 0;
+}
