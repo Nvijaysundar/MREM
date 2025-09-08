@@ -1,0 +1,66 @@
+class Student:
+    def __init__(self, name, roll, age):  # constructor
+        self.name = name
+        self.roll = roll
+        self.age = age
+        self.next = None
+
+
+class SLL:
+    def __init__(self):
+        self.head = None
+
+    def appendAtEnd(self):
+        name = input("Enter Name: ")
+        roll = input("Enter Roll: ")
+        age = int(input("Enter Age: "))
+        newStudent = Student(name, roll, age)
+        if self.head == None:
+            self.head = newStudent
+        else:
+            temp = self.head
+            while temp.next != None:
+                temp = temp.next
+            temp.next = newStudent
+
+    def deleteAtEnd(self):
+        if self.head == None:
+            print("Empty List")
+        else:
+            temp = self.head
+            while temp.next.next != None:
+                temp = temp.next
+            temp.next = None
+
+    def insertAtBegin(self):
+        name = input("Enter Name: ")
+        roll = input("Enter Roll: ")
+        age = int(input("Enter Age: "))
+        newStudent = Student(name, roll, age)
+        if self.head == None:
+            self.head = newStudent
+        else:
+            newStudent.next = self.head
+            self.head = newStudent
+
+    def deleteAtBegin(self):
+        if self.head == None:
+            print("Empty List")
+        else:
+            self.head = self.head.next
+
+    def display(self):
+        if self.head == None:
+            print("Empty List")
+        else:
+            temp = self.head
+            while temp != None:
+                print(temp.name, temp.age, temp.roll)
+                temp = temp.next
+
+
+sl = SLL()
+sl.appendAtEnd()
+
+sl.appendAtEnd()
+sl.display()
